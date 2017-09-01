@@ -6,7 +6,7 @@
     "watch": "nodemon & ng serve --proxy-config proxy.conf.json",
     "test": "ava",
     "cover": "nyc ava",
-    "start": "node index",
+    "start": "npm run build && node index",
     "build": "ng build -prod"
   },
   "author": "spirin.vladimir@gmail.com",
