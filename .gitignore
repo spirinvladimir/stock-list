@@ -18,6 +18,9 @@ node_modules
 .settings/
 *.sublime-workspace
 
+# Generated
+public
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
