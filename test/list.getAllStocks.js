@@ -1,8 +1,6 @@
 const
     test = require('ava'),
-    createList = require('../server/list').createList,
-    setStockById = require('../server/list').setStockById,
-    getAllStocks = require('../server/list').getAllStocks,
+    {createList, setStockById, getAllStocks} = require('../server/list'),
     Stock = require('../server/stock');
 
 test('getAllStocks', t => {

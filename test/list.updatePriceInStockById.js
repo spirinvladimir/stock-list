@@ -1,8 +1,6 @@
 const
     test = require('ava'),
-    createList = require('../server/list').createList,
-    setStockById = require('../server/list').setStockById,
-    updatePriceInStockById = require('../server/list').updatePriceInStockById,
+    {createList, setStockById, updatePriceInStockById} = require('../server/list'),
     Stock = require('../server/stock');
 
 test('updatePriceInStockById', t => {
@@ -11,7 +9,7 @@ test('updatePriceInStockById', t => {
         id = 1,
         time = 1234567,
         stock = new Stock({
-            id: id,
+            id,
             name: 'USD',
             currentPrice: 2,
             lastUpdate: time

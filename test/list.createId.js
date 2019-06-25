@@ -1,7 +1,6 @@
 const
     test = require('ava'),
-    createList = require('../server/list').createList,
-    createId = require('../server/list').createId;
+    {createList, createId} = require('../server/list');
 
 test('createId should create uuid', t => {
     const

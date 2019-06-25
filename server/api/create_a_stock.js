@@ -1,8 +1,7 @@
 const
     path = require('path'),
     Stock = require('../stock'),
-    createId = require('../list').createId,
-    setStockById = require('../list').setStockById;
+    {createId, setStockById} = require('../list');
 
 module.exports = (list) => (req, res) => res.json(
     setStockById(

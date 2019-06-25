@@ -15,7 +15,6 @@ module.exports = (list, port) => {
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(express.static('public'));
 
-    app.get('/', (req, res) => res.sendFile(path.join(__dirname, '..' ,'public', 'index.html')));
     app.get('/api/stocks', get_a_list_of_stocks(list));
     app.get('/api/stocks/:id', get_one_stock_from_the_list(list));
     app.put('/api/stocks/:id', update_the_price_of_a_single_stock(list));

@@ -3,7 +3,7 @@ const
     request = require('supertest'),
     port = require('../server/port'),
     webserver = require('../server/webserver'),
-    createList = require('../server/list').createList;
+    {createList} = require('../server/list');
 
 test.cb('POST /api/stocks (create a stock)', t => {
     const
@@ -99,6 +99,20 @@ test.cb('PUT /api/stocks/1 (update the price of a single stock)', t => {
         .then((currentPrice) => {
             app.close();
             t.deepEqual(currentPrice, 2);
+            t.end();
+        });
+});
+
+test.cb('GET / (main page)', t => {
+    const
+        app = webserver(createList(), port());
+
+    request(app)
+        .get('/')
+        .send()
+        .expect(200)
+        .then(() => {
+            app.close();
             t.end();
         });
 });

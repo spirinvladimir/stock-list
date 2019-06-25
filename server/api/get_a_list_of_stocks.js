@@ -1,5 +1,5 @@
 const
-    getAllStocks = require('../list').getAllStocks;
+    {getAllStocks} = require('../list');
 
 module.exports = (list) => (req, res) => res.json(
     getAllStocks(list)

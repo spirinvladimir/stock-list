@@ -1,6 +1,6 @@
 const
     test = require('ava'),
-    createList = require('../server/list').createList;
+    {createList} = require('../server/list');
 
 test('createList should create hash-map with id for uuid', t => {
     const
