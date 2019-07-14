@@ -1,13 +1,15 @@
 const
-    test = require('ava'),
+    assert = require('assert'),
     {createList} = require('../server/list');
 
-test('createList should create hash-map with id for uuid', t => {
-    const
-        list = createList();
+describe(__filename, () =>
+    it('createList should create hash-map with id for uuid', () => {
+        const
+            list = createList();
 
-	t.deepEqual(typeof list, 'object');
-	t.deepEqual(list.id, 0);
-	t.deepEqual(list.id, list.__proto__.id);
-	t.deepEqual(Object.keys(list).length, 0);
-});
+       assert.deepEqual(typeof list, 'object');
+       assert.deepEqual(list.id, 0);
+       assert.deepEqual(list.id, list.__proto__.id);
+       assert.deepEqual(Object.keys(list).length, 0);
+    })
+)

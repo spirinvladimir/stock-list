@@ -1,12 +1,14 @@
 const
-    test = require('ava'),
+    assert = require('assert'),
     {createList, createId} = require('../server/list');
 
-test('createId should create uuid', t => {
-    const
-        list = createList();
+describe(__filename, () =>
+    it('createId should create uuid', () => {
+        const
+            list = createList();
 
-	t.deepEqual(createId(list), 1);
-	t.deepEqual(createId(list), 2);
-	t.deepEqual(list.id, 2);
-});
+        assert.deepEqual(createId(list), 1);
+        assert.deepEqual(createId(list), 2);
+        assert.deepEqual(list.id, 2);
+    })
+)

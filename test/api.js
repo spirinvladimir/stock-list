@@ -1,11 +1,12 @@
 const
-    test = require('ava'),
+    assert = require('assert'),
     request = require('supertest'),
     port = require('../server/port'),
     webserver = require('../server/webserver'),
     {createList} = require('../server/list');
 
-test.cb('POST /api/stocks (create a stock)', t => {
+describe(__filename, () => {
+it('POST /api/stocks (create a stock)', done => {
     const
         app = webserver(createList(), port());
 
@@ -20,17 +21,17 @@ test.cb('POST /api/stocks (create a stock)', t => {
                 currentPrice = res.body.currentPrice,
                 lastUpdate = res.body.lastUpdate;
 
-            t.deepEqual(id, 1);
-            t.deepEqual(name, 'EUR');
-            t.deepEqual(currentPrice, 1);
-            t.deepEqual(typeof lastUpdate, 'number');
+            assert.deepEqual(id, 1);
+            assert.deepEqual(name, 'EUR');
+            assert.deepEqual(currentPrice, 1);
+            assert.deepEqual(typeof lastUpdate, 'number');
 
             app.close();
-            t.end();
+            done();
         });
 });
 
-test.cb('GET /api/stocks (get a list of stocks)', t => {
+it('GET /api/stocks (get a list of stocks)', done => {
     const
         app = webserver(createList(), port()),
         send = (stock) => request(app)
@@ -47,13 +48,13 @@ test.cb('GET /api/stocks (get a list of stocks)', t => {
             .set('Accept', 'application/json')
             .then((res) => {
                 app.close();
-                t.deepEqual(res.body.length, 2);
-                t.end();
+                assert.deepEqual(res.body.length, 2);
+                done();
             });
     });
 });
 
-test.cb('GET /api/stocks/1 (get one stock from the list)', t => {
+it('GET /api/stocks/1 (get one stock from the list)', done => {
     const
         app = webserver(createList(), port());
 
@@ -68,15 +69,15 @@ test.cb('GET /api/stocks/1 (get one stock from the list)', t => {
             .expect(200))
         .then((res) => {
             app.close();
-            t.deepEqual(res.body.hasOwnProperty("id"), true);
-            t.deepEqual(res.body.hasOwnProperty("name"), true);
-            t.deepEqual(res.body.hasOwnProperty("currentPrice"), true);
-            t.deepEqual(res.body.hasOwnProperty("lastUpdate"), true);
-            t.end();
+            assert.deepEqual(res.body.hasOwnProperty("id"), true);
+            assert.deepEqual(res.body.hasOwnProperty("name"), true);
+            assert.deepEqual(res.body.hasOwnProperty("currentPrice"), true);
+            assert.deepEqual(res.body.hasOwnProperty("lastUpdate"), true);
+            done();
         });
 });
 
-test.cb('PUT /api/stocks/1 (update the price of a single stock)', t => {
+it('PUT /api/stocks/1 (update the price of a single stock)', done => {
     const
         app = webserver(createList(), port());
 
@@ -98,21 +99,9 @@ test.cb('PUT /api/stocks/1 (update the price of a single stock)', t => {
         .then(res => res.body.currentPrice)
         .then((currentPrice) => {
             app.close();
-            t.deepEqual(currentPrice, 2);
-            t.end();
+            assert.deepEqual(currentPrice, 2);
+            done();
         });
 });
 
-test.cb('GET / (main page)', t => {
-    const
-        app = webserver(createList(), port());
-
-    request(app)
-        .get('/')
-        .send()
-        .expect(200)
-        .then(() => {
-            app.close();
-            t.end();
-        });
-});
+})
