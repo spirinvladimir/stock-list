@@ -1,5 +1,5 @@
 # Assignment
-
+[![Build Status](https://travis-ci.org/spirinvladimir/stock-list.svg?branch=master)](https://travis-ci.org/spirinvladimir/stock-list)
 [Demo (hosted on Heroku)](https://stock--list.herokuapp.com/)
 
 ## Install:
