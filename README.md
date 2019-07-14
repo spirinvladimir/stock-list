@@ -15,7 +15,7 @@
 ## Testing:
 ``npm test``
 
-*Testing framework is AVA.
+*Testing framework is Mocha.
 For testing web API used Supertest (default testing framework for Expressjs). Test coverage is 100%.*
 
 ## Start application:
